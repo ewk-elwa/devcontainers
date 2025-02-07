@@ -16,8 +16,8 @@ docker cp $MARIADB_TAR $CONTAINER_NAME:/root/
 docker cp $MOVIE_SVC_TAR $CONTAINER_NAME:/root/
 
 # Clean up local tar files
-rm $MARIADB_TAR
-rm $MOVIE_SVC_TAR
+# rm $MARIADB_TAR
+# rm $MOVIE_SVC_TAR
 
 echo "Images saved and copied to the mydind container successfully."
 
