@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"recipebook/src/models"
-	"recipebook/src/services"
+	"github.com/ewk-elwa/devcontainers/recipebook/src/models"
+	"github.com/ewk-elwa/devcontainers/recipebook/src/services"
 )
 
 type RecipeController struct {

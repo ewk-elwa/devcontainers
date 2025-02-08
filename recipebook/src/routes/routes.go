@@ -1,14 +1,16 @@
 package routes
 
 import (
-    "github.com/gin-gonic/gin"
-    "recipebook/src/controllers"
+    "github.com/gorilla/mux"
+    "github.com/ewk-elwa/devcontainers/recipebook/src/controllers"
 )
 
-func SetupRoutes(router *gin.Engine) {
+func InitializeRoutes() *mux.Router {
+    router := mux.NewRouter()
     recipeController := controllers.RecipeController{}
 
-    router.GET("/recipes", recipeController.GetAllRecipes)
-    router.GET("/recipes/:id", recipeController.GetRecipe)
-    router.POST("/recipes", recipeController.CreateRecipe)
+    router.HandleFunc("/recipes", recipeController.GetAllRecipes).Methods("GET")
+    router.HandleFunc("/recipes/:id", recipeController.GetRecipe).Methods("GET")
+    router.HandleFunc("/recipes", recipeController.CreateRecipe).Methods("POST")
+    return router
 }

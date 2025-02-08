@@ -3,7 +3,7 @@ package services
 import (
 	"errors"
 	"sync"
-	"recipebook/src/models"
+	"github.com/ewk-elwa/devcontainers/recipebook/src/models"
 )
 
 type RecipeService struct {
@@ -23,22 +23,22 @@ func (rs *RecipeService) GetAllRecipes() []models.Recipe {
 	return rs.recipes
 }
 
-func (rs *RecipeService) CreateRecipe(recipe models.Recipe) error {
-	rs.mu.Lock()
-	defer rs.mu.Unlock()
+func (rs *RecipeService) CreateRecipe(recipe models.Recipe) (*models.Recipe, error) {
+    rs.mu.Lock()
+    defer rs.mu.Unlock()
 
-	if recipe.ID == 0 {
-		return errors.New("recipe ID must be greater than 0")
-	}
+    if recipe.ID <= 0 {
+        return nil, errors.New("recipe ID must be greater than 0")
+    }
 
-	for _, r := range rs.recipes {
-		if r.ID == recipe.ID {
-			return errors.New("recipe with this ID already exists")
-		}
-	}
+    for _, r := range rs.recipes {
+        if r.ID == recipe.ID {
+            return nil, errors.New("recipe with this ID already exists")
+        }
+    }
 
-	rs.recipes = append(rs.recipes, recipe)
-	return nil
+    rs.recipes = append(rs.recipes, recipe)
+    return &recipe, nil
 }
 
 func (rs *RecipeService) GetRecipeByID(id int) (*models.Recipe, error) {

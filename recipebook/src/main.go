@@ -1,12 +1,15 @@
 package main
 
 import (
-    "github.com/gin-gonic/gin"
-    "recipebook/src/routes"
+    "log"
+    "net/http"    
+    "github.com/ewk-elwa/devcontainers/recipebook/src/routes"
 )
 
 func main() {
-    r := gin.Default()
-    routes.SetupRoutes(r)
-    r.Run(":8080")
+    router := routes.InitializeRoutes()
+    log.Println("Starting server on :8080")
+    if err := http.ListenAndServe(":8080", router); err != nil {
+        log.Fatal(err)
+    }    
 }
