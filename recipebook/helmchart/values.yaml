@@ -4,6 +4,6 @@ recipebook:
     env:
       databaseUrl: your-database-url
     image:
-      repository: your-dockerhub-username/recipebook
+      repository: elwatech/recipebook
       tag: latest
-  replicas: 3
+  replicas: 1

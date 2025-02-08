@@ -5,5 +5,5 @@ todo:
     env:
       databaseUrl: your-database-url
     image:
-      repository: your-docker-repo/todo
+      repository: elwatech/todo
       tag: latest
