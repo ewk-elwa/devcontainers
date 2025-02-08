@@ -1,0 +1,9 @@
+kubernetesClusterDomain: cluster.local
+todo:
+  replicas: 3
+  todo:
+    env:
+      databaseUrl: your-database-url
+    image:
+      repository: your-docker-repo/todo
+      tag: latest

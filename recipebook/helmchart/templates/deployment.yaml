@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "helmchart.fullname" . }}-recipebook
+  labels:
+  {{- include "helmchart.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.recipebook.replicas }}
+  selector:
+    matchLabels:
+      app: recipebook
+    {{- include "helmchart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        app: recipebook
+      {{- include "helmchart.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - env:
+        - name: DATABASE_URL
+          value: {{ quote .Values.recipebook.recipebook.env.databaseUrl }}
+        - name: KUBERNETES_CLUSTER_DOMAIN
+          value: {{ quote .Values.kubernetesClusterDomain }}
+        image: {{ .Values.recipebook.recipebook.image.repository }}:{{ .Values.recipebook.recipebook.image.tag
+          | default .Chart.AppVersion }}
+        name: recipebook
+        ports:
+        - containerPort: 8080
+        resources: {}

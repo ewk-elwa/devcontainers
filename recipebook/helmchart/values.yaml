@@ -1,0 +1,9 @@
+kubernetesClusterDomain: cluster.local
+recipebook:
+  recipebook:
+    env:
+      databaseUrl: your-database-url
+    image:
+      repository: your-dockerhub-username/recipebook
+      tag: latest
+  replicas: 3

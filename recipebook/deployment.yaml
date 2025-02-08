@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recipebook
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: recipebook
+  template:
+    metadata:
+      labels:
+        app: recipebook
+    spec:
+      containers:
+      - name: recipebook
+        image: your-dockerhub-username/recipebook:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DATABASE_URL
+          value: "your-database-url"
