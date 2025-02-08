@@ -9,7 +9,8 @@ COPY src/ ./src/
 
 WORKDIR /app/src
 
-RUN go build -o recipebook main.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -installsuffix cgo -ldflags '-extldflags "-static"' -o recipebook main.go
+# RUN go build -o recipebook main.go
 
 FROM alpine:latest
 
