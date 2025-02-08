@@ -15,10 +15,10 @@ build_todo() {
 }
 
 # Run both build functions in parallel
-build_recipebook
-build_todo
+build_recipebook &
+build_todo &
 
 # Wait for both builds to finish
-# wait
+wait
 
 echo "Both Docker images built successfully."

@@ -5,15 +5,17 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 
-COPY src/ ./
+COPY src/ ./src/
 
-RUN go build -o todo src/main.go
+WORKDIR /app/src
+
+RUN go build -o todo main.go
 
 FROM alpine:latest
 
 WORKDIR /root/
 
-COPY --from=builder /app/todo .
+COPY --from=builder /app/src/todo .
 
 CMD ["./todo"] 
 
