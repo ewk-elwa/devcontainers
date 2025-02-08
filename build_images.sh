@@ -26,7 +26,7 @@ docker tag recipebook:latest elwatech/recipebook:latest
 docker tag todo:latest elwatech/todo:latest
 
 docker push elwatech/recipebook:latest &
-docker
+docker push elwatech/todo:latest &
 wait
 
 
