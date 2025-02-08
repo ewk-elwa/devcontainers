@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: recipebook
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: recipebook
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: recipebook
-        image: your-dockerhub-username/recipebook:latest
+        image: elwatech/recipebook:latest
         ports:
         - containerPort: 8080
         env:

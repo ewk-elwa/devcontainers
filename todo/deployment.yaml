@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: todo
-        image: your-docker-repo/todo:latest
+        image: elwatech/todo:latest
         ports:
         - containerPort: 8080
         env:
