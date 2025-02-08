@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"sort"
 	"time"
-  "sort"
-  "os"
 )
 
 // Function to generate prime numbers up to a limit
@@ -56,19 +56,18 @@ func main() {
 
 	// Sort the primes
 	var sortedPrimes []int
-  if os.Getenv("USE_BUBBLE") != "" {
-    sortedPrimes = bubbleSort(primes)
-  } else {
-    sort.Ints(primes)
-    sortedPrimes = primes
-  }
-  fmt.Printf("Sorted %d prime numbers.\n", len(sortedPrimes))
+	if os.Getenv("USE_BUBBLE") != "" {
+		sortedPrimes = bubbleSort(primes)
+	} else {
+		sort.Ints(primes)
+		sortedPrimes = primes
+	}
+	fmt.Printf("Sorted %d prime numbers.\n", len(sortedPrimes))
 
 	// Compute sum of squares
 	total := sumOfSquares(sortedPrimes)
 	fmt.Printf("Sum of squares: %d\n", total)
 
 	fmt.Printf("Execution time: %v\n", time.Since(start))
-  fmt.Printf("USE_BUBBLE was : %v\n", os.Getenv("USE_BUBBLE"))
+	fmt.Printf("USE_BUBBLE was : %v\n", os.Getenv("USE_BUBBLE"))
 }
-
