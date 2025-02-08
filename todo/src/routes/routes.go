@@ -1,9 +1,9 @@
 package routes
 
 import (
-    "net/http"
+    // "net/http"
     "github.com/gorilla/mux"
-    "todo/src/handlers"
+    "github.com/ewk-elwa/devcontainers/todo/src/handlers"
 )
 
 func InitializeRoutes() *mux.Router {

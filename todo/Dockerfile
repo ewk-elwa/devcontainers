@@ -7,7 +7,7 @@ RUN go mod download
 
 COPY src/ ./
 
-RUN go build -o todo main.go
+RUN go build -o todo src/main.go
 
 FROM alpine:latest
 

@@ -4,8 +4,9 @@ import (
 	"encoding/json"
 	"net/http"
 	"sync"
+	"strconv"
 
-	"todo/src/models"
+	"github.com/ewk-elwa/devcontainers/todo/src/models"
 )
 
 var (
@@ -67,13 +68,18 @@ func UpdateTodo(w http.ResponseWriter, r *http.Request) {
 
 // DeleteTodo handles deleting a todo item
 func DeleteTodo(w http.ResponseWriter, r *http.Request) {
-	id := r.URL.Query().Get("id")
+	idStr := r.URL.Query().Get("id")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		http.Error(w, "Invalid ID", http.StatusBadRequest)
+		return
+	}
 
 	mu.Lock()
 	defer mu.Unlock()
 
-	for k := range todos {
-		if k == id {
+	for k, todo := range todos {
+		if todo.ID == id {
 			delete(todos, k)
 			w.WriteHeader(http.StatusNoContent)
 			return
