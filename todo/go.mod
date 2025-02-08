@@ -1,7 +1,5 @@
 module todo
 
-go 1.23
+go 1.23.6
 
-require (
-    github.com/gin-gonic/gin v1.7.4
-)
+require github.com/gorilla/mux v1.8.1
