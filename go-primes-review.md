@@ -121,7 +121,8 @@ func getPrimesConcurrent(n int) []int {
 
 ## Final Verdict & Suggested Improvements 🚀
 
-|Issue |Current Code |Suggested Fix
+|Issue |Current Code |Suggested Fix|
+|------|-------------|-------------|
 |Prime Computation Inefficiency	|O(n²)	|Optimize to O(n log log n) using Sieve of Eratosthenes |
 |Bubble Sort Inefficiency	|O(n²)	|Replace with Go’s built-in sort.Ints() |
 |Poor Naming Conventions	|Mixed styles	|Standardize to camelCase or PascalCase |
