@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"os"
+	"sort"
 	"sync"
-  "math"
-  "sort"
 	"time"
 )
 
@@ -82,8 +82,8 @@ func getPrimesConcurrent(n int) []int {
 
 	// Close the channel once all goroutines finish
 	go func() {
-		wg.Wait()  // Wait for all goroutines to complete
-		close(ch)  // Close the channel safely
+		wg.Wait() // Wait for all goroutines to complete
+		close(ch) // Close the channel safely
 	}()
 
 	// Collect results from channel
@@ -95,17 +95,16 @@ func getPrimesConcurrent(n int) []int {
 	return primes
 }
 
-
 func main() {
 	start := time.Now()
 
 	// Generate prime numbers up to 10,000
 	var primes []int
-  if os.Getenv("PRIME_ALG") == "none" {
-    primes = getPrimes(123456)
-  } else {
-    primes = getPrimesConcurrent(123456)
-  }
+	if os.Getenv("PRIME_ALG") == "none" {
+		primes = getPrimes(123456)
+	} else {
+		primes = getPrimesConcurrent(123456)
+	}
 
 	fmt.Printf("Found %d prime numbers.\n", len(primes))
 
