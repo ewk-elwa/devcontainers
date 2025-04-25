@@ -1,0 +1,11 @@
+# Create a Role specifying allowed actions. This example grants full access
+# to pods, deployments, and ConfigMaps in the super-air namespace
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: super-air
+  name: super-air-full-access
+rules:
+- apiGroups: ["", "apps", "batch"]
+  resources: ["pods", "deployments", "configmaps", "jobs"]
+  verbs: ["*"]
